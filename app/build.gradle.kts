@@ -45,6 +45,9 @@ android {
             )
         }
     }
+    testOptions {
+        execution = "host"
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -84,6 +87,12 @@ dependencies {
     implementation("androidx.room:room-ktx:${rootProject.extra["room_version"]}")
 
     // Testing
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
+    // Si estás probando la base de datos Room en el emulador:
+    androidTestImplementation("androidx.room:room-testing:${rootProject.extra["room_version"]}")
 }
